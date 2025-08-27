@@ -1,0 +1,27 @@
+{
+  "name": "SSKratom-YMT",
+  "short_name": "SSKratomYMT",
+  "description": "บันทึกยอดขาย คำนวณวัตถุดิบ และแดชบอร์ด (PWA)",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F1F8E9",
+  "theme_color": "#2E7D32",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

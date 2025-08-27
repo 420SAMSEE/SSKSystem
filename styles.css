@@ -1,0 +1,691 @@
+:root {
+      --primary-color: #2E7D32;
+      --primary-light: #4CAF50;
+      --primary-lighter: #81C784;
+      --primary-dark: #1B5E20;
+      --accent-color: #8BC34A;
+      --background: #F1F8E9;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --text-dark: #263238;
+      --text-medium: #455A64;
+      --text-light: #607D8B;
+      --success-color: #388E3C;
+      --warning-color: #F57C00;
+      --error-color: #D32F2F;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 20px rgba(0,0,0,0.1);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: var(--background);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .app-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: fadeIn 0.5s ease-out;
+      flex: 1;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .app-header {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary-dark);
+    }
+    
+    .app-header h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-weight: 600;
+    }
+    
+    .current-date {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      font-weight: 300;
+    }
+    
+    /* แท็บเมนู */
+    .tab-menu {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    
+    .tab-btn {
+      padding: 12px 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-medium);
+      transition: var(--transition);
+      position: relative;
+      margin-right: 5px;
+      border-radius: 8px 8px 0 0;
+    }
+    
+    .tab-btn:hover {
+      background-color: rgba(76, 175, 80, 0.1);
+    }
+    
+    .tab-btn.active {
+      color: var(--primary-dark);
+      background-color: rgba(76, 175, 80, 0.2);
+    }
+    
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    /* สไตล์ส่วนฟอร์มบันทึกยอดขาย */
+    .form-card, .material-calculator, .dashboard-container {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: var(--transition);
+      border-top: 4px solid var(--primary-light);
+    }
+    
+    .form-card:hover, .material-calculator:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      color: var(--primary-dark);
+    }
+    
+    .card-header h2, .card-header h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+    
+    .card-header i {
+      font-size: 1.2rem;
+      color: var(--primary-light);
+    }
+    
+    .form-group {
+      margin-bottom: 18px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 400;
+      color: var(--text-medium);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+    
+    .form-group i {
+      color: var(--primary-light);
+      width: 20px;
+      text-align: center;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: white;
+      font-family: 'Kanit', sans-serif;
+    }
+    
+    .form-group input:focus {
+      border-color: var(--primary-light);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    }
+    
+    .output-box {
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    
+    .output-box:hover {
+      box-shadow: var(--shadow-md);
+    }
+    
+    .output-box.revenue {
+      border-left: 4px solid var(--success-color);
+      color: var(--success-color);
+    }
+    
+    .output-box.expense {
+      border-left: 4px solid var(--warning-color);
+      color: var(--warning-color);
+    }
+    
+    .output-box.balance {
+      border-left: 4px solid var(--primary-color);
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      font-weight: 500;
+      background-color: rgba(139, 195, 74, 0.1);
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .submit-btn:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    
+    .action-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .action-btn:active {
+      transform: translateY(0);
+    }
+    
+    .action-btn.sheet-btn {
+      background-color: white;
+      color: var(--text-medium);
+      border: 1px solid #e0e0e0;
+    }
+    
+    .action-btn.sheet-btn:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .action-btn.report-btn {
+      background-color: var(--accent-color);
+      color: white;
+    }
+    
+    .action-btn.report-btn:hover {
+      background-color: var(--primary-light);
+    }
+    
+    .msg-box {
+      margin-top: 25px;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    
+    .msg-box.success {
+      background-color: rgba(56, 142, 60, 0.1);
+      color: var(--success-color);
+    }
+    
+    .msg-box.error {
+      background-color: rgba(211, 47, 47, 0.1);
+      color: var(--error-color);
+    }
+    
+    .msg-box.loading {
+      background-color: rgba(251, 192, 45, 0.1);
+      color: var(--warning-color);
+    }
+    
+    /* สไตล์ส่วนคำนวณวัตถุดิบ */
+    .material-calculator {
+      border-top: 4px solid var(--accent-color);
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-medium);
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: white;
+    }
+    
+    .input-group input:focus {
+      border-color: var(--accent-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.2);
+    }
+    
+    .calc-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .calc-btn {
+      flex: 1;
+      padding: 14px;
+      background-color: var(--primary-light);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .calc-btn:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .calc-btn.reset {
+      background-color: #f5f5f5;
+      color: var(--text-medium);
+    }
+    
+    .calc-btn.reset:hover {
+      background-color: #e0e0e0;
+    }
+    
+    .result-section {
+      margin-top: 30px;
+    }
+    
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: var(--shadow-sm);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .result-table th, .result-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .result-table th {
+      background-color: var(--primary-light);
+      color: white;
+      font-weight: 500;
+    }
+    
+    .result-table tr:nth-child(even) {
+      background-color: rgba(139, 195, 74, 0.05);
+    }
+    
+    .result-table tr:hover {
+      background-color: rgba(139, 195, 74, 0.1);
+    }
+    
+    .result-value {
+      font-weight: 500;
+      color: var(--primary-dark);
+    }
+
+    /* สไตล์สำหรับแดชบอร์ด */
+    .dashboard-container {
+        border-top: 4px solid var(--primary-color);
+        padding: 1.5rem;
+    }
+
+    .kpi-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    @media (min-width: 640px) {
+        .kpi-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (min-width: 1024px) {
+        .kpi-container {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    .kpi-card {
+        background-color: white;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    .kpi-card:hover {
+        transform: translateY(-0.25rem);
+    }
+    .kpi-card .label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #607D8B;
+    }
+    .kpi-card .value {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #263238;
+        margin-top: 0.25rem;
+    }
+
+    .chart-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 1024px) {
+      .chart-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .chart-card {
+        background-color: white;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    .chart-card h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #263238;
+        margin-bottom: 1rem;
+    }
+
+    .chart-wrapper {
+        position: relative;
+        height: 300px; /* ปรับความสูงของกราฟให้เหมาะสมกับมือถือ */
+        width: 100%;
+    }
+    @media (max-width: 768px) {
+        .chart-wrapper {
+            height: 250px; /* ลดความสูงบนหน้าจอเล็ก */
+        }
+    }
+    @media (max-width: 480px) {
+        .chart-wrapper {
+            height: 220px; /* ลดความสูงบนหน้าจอเล็กมาก */
+        }
+        .chart-card h2 {
+            font-size: 1.1rem; /* ลดขนาดฟอนต์หัวข้อบนมือถือ */
+        }
+    }
+
+    .history-table-container {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+    }
+    .history-table {
+        min-width: 100%;
+        border-collapse: collapse;
+    }
+    .history-table th, .history-table td {
+        padding: 0.75rem 1.5rem;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .history-table thead {
+        background-color: #f1f8e9;
+    }
+    .history-table th {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #455a64;
+        text-transform: uppercase;
+    }
+    .history-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      
+      .app-header h1 {
+        font-size: 1.6rem;
+      }
+      
+      .card-header h2 {
+        font-size: 1.2rem;
+      }
+      
+      .action-buttons, .calc-buttons {
+        flex-direction: column;
+      }
+      
+      .form-card, .material-calculator {
+        padding: 20px;
+      }
+      
+      .tab-menu {
+        flex-direction: column;
+      }
+      
+      .tab-btn {
+        border-radius: 8px;
+        margin-bottom: 5px;
+      }
+      
+      .tab-btn.active::after {
+        display: none;
+      }
+
+      /* ปรับการแสดงผลแดชบอร์ดบนมือถือ */
+      .dashboard-container {
+        padding: 1rem;
+      }
+
+      .kpi-card {
+        padding: 1rem;
+      }
+
+      .kpi-card .value {
+        font-size: 1.5rem;
+      }
+
+      /* ปรับการแสดงผลฟิลเตอร์บนมือถือ */
+      .bg-white.p-4 {
+        padding: 1rem !important;
+      }
+
+      .bg-white .flex-1 {
+        margin-bottom: 1rem;
+      }
+
+      /* ปรับปุ่มบนมือถือ */
+      #export-btn, #refresh-btn {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .app-header h1 {
+        font-size: 1.4rem;
+      }
+      
+      .form-group input, .input-group input {
+        padding: 12px 14px;
+      }
+      
+      .output-box {
+        font-size: 1rem;
+      }
+      
+      .output-box.balance {
+        font-size: 1.1rem;
+      }
+      
+      .result-table th, .result-table td {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+
+      /* ปรับการแสดงผลตารางประวัติบนมือถือ */
+      .history-table th, 
+      .history-table td {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+      }
+
+      .history-table th:nth-child(n+3),
+      .history-table td:nth-child(n+3) {
+        display: none; /* ซ่อนคอลัมน์ที่ไม่สำคัญบนมือถือ */
+      }
+
+      .history-table th:nth-child(1),
+      .history-table th:nth-child(2),
+      .history-table td:nth-child(1),
+      .history-table td:nth-child(2) {
+        display: table-cell; /* แสดงเฉพาะคอลัมน์วันที่และจำนวนที่ขาย */
+      }
+    }
+    
+    /* Footer styles */
+    .app-footer {
+      text-align: center;
+      margin-top: 18px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      padding: 10px 0;
+    }
+
+    /* เพิ่มสไตล์สำหรับการแสดงผลบนมือถือแบบแนวตั้ง */
+    @media (max-width: 768px) and (orientation: portrait) {
+      .chart-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .flex.flex-col.sm\:flex-row {
+        flex-direction: column;
+      }
+      
+      .flex.flex-col.sm\:flex-row .w-full.sm\:w-auto {
+        width: 100%;
+        margin-top: 1rem;
+      }
+    }
